@@ -5,8 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>杰拓有限公司｜塑膠再生・進出口・輸送帶</title>
   <meta name="description" content="杰拓有限公司｜專注塑膠再生、國際進出口與輸送帶產品。提供漁網再生料、HIPS托盤粉碎、中古輸送帶、POM（泰格納原料）等，穩定供應、規格透明、快速交付。" />
-  <link rel="icon" href="/favicon.ico" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232a7af0'/%3E%3Ctext x='50%' y='55%' text-anchor='middle' font-size='34' font-family='Segoe UI, Arial' fill='white'%3EJ%3C/text%3E%3C/svg%3E" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef6ff', 100: '#d9eafe', 200: '#bcd8fd', 300: '#90c0fb', 400: '#5aa0f7',
+              500: '#2a7af0', 600: '#1f5fd1', 700: '#1c51ae', 800: '#1b478f', 900: '#1a3c74'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(2,6,23,.08)'
+          },
+          borderRadius: {
+            xl2: '1.25rem'
+          }
+        }
+      }
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -18,47 +38,355 @@
     .fade-up{opacity:0; transform: translateY(12px); transition: all .6s ease}
     .fade-up.show{opacity:1; transform: translateY(0)}
     html{scroll-behavior:smooth}
+    details summary{cursor:pointer}
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 selection:bg-blue-100 selection:text-blue-800">
+<body class="bg-slate-50 text-slate-800 selection:bg-brand-100 selection:text-brand-800">
+  <!-- Header -->
   <header class="fixed inset-x-0 top-0 z-50 nav-blur bg-white/70 border-b border-slate-200/60">
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between h-16">
         <a href="#home" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-2xl bg-blue-600 grid place-content-center text-white font-bold shadow">J</div>
+          <div class="w-10 h-10 rounded-2xl bg-brand-600 grid place-content-center text-white font-bold shadow-soft">J</div>
           <div class="leading-tight">
-            <div class="font-semibold group-hover:text-blue-700 transition">杰拓有限公司</div>
+            <div class="font-semibold group-hover:text-brand-700 transition">杰拓有限公司</div>
             <div class="text-xs text-slate-500">JETO Co., Ltd.</div>
           </div>
         </a>
-        <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 text-white text-sm shadow hover:bg-blue-700 transition">
-          聯絡我們
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#about" class="hover:text-brand-700">關於</a>
+          <a href="#products" class="hover:text-brand-700">產品</a>
+          <a href="#services" class="hover:text-brand-700">服務</a>
+          <a href="#news" class="hover:text-brand-700">新聞/案例</a>
+          <a href="#contact" class="hover:text-brand-700">聯絡</a>
+          <button id="langBtn" class="ml-2 px-3 py-1.5 rounded-xl border border-slate-300 text-xs">中 / EN</button>
+        </nav>
+        <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 text-white text-sm shadow-soft hover:bg-brand-700 transition">
+          取得報價
         </a>
+        <button id="menuBtn" class="md:hidden p-2 rounded-xl border border-slate-200" aria-label="open menu">☰</button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mnav" class="md:hidden hidden border-t border-slate-100 bg-white">
+      <div class="container mx-auto px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#about" onclick="toggleMenu()" class="hover:text-brand-700">關於</a>
+        <a href="#products" onclick="toggleMenu()" class="hover:text-brand-700">產品</a>
+        <a href="#services" onclick="toggleMenu()" class="hover:text-brand-700">服務</a>
+        <a href="#news" onclick="toggleMenu()" class="hover:text-brand-700">新聞/案例</a>
+        <a href="#contact" onclick="toggleMenu()" class="hover:text-brand-700">聯絡</a>
+        <button id="langBtnM" class="mt-1 px-3 py-1.5 rounded-xl border border-slate-300 text-xs w-max">中 / EN</button>
       </div>
     </div>
   </header>
-  <main class="pt-20">
-    <section class="py-16 text-center bg-gradient-to-br from-blue-50 via-white to-slate-50">
-      <h1 class="text-4xl font-bold text-blue-700 mb-4">塑膠再生 × 國際供應鏈</h1>
-      <p class="text-slate-600 max-w-2xl mx-auto">杰拓有限公司專注於塑膠再生料、進出口與輸送帶產品，致力於讓資源循環再利用，讓品質走向全球。</p>
-    </section>
-    <section id="products" class="py-20 container mx-auto px-4">
-      <h2 class="text-3xl font-semibold text-center mb-10">主要產品</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white border p-5 rounded-xl shadow"><h3 class="font-semibold text-lg">漁網再生料（PE/PA/PET）</h3><p class="text-slate-600 text-sm mt-2">分選良好、處理乾淨，可依需求提供不同顆粒或碎片型態。</p></div>
-        <div class="bg-white border p-5 rounded-xl shadow"><h3 class="font-semibold text-lg">英國 HIPS 托盤粉碎</h3><p class="text-slate-600 text-sm mt-2">穩定供應，每月 1–2 櫃，粒徑均勻、污染低。</p></div>
-        <div class="bg-white border p-5 rounded-xl shadow"><h3 class="font-semibold text-lg">中古輸送帶</h3><p class="text-slate-600 text-sm mt-2">多種等級與寬度，可再利用或回收，提供裁切服務。</p></div>
-        <div class="bg-white border p-5 rounded-xl shadow"><h3 class="font-semibold text-lg">POM（泰格納原料）</h3><p class="text-slate-600 text-sm mt-2">高剛性、尺寸穩定，適用於工程用途，提供批次資料與照片。</p></div>
+
+  <main class="pt-20" id="home">
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-brand-50 via-white to-slate-50"></div>
+      <svg class="absolute -right-24 -top-24 w-[520px] -z-10 opacity-50" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="#d9eafe" d="M46.5,-62.6C59.3,-54.5,68.5,-39.7,73.5,-24.2C78.5,-8.7,79.3,7.5,73.6,20.1C67.9,32.6,55.8,41.6,43.5,50.7C31.3,59.9,19,69.2,4.2,74.4C-10.6,79.7,-27.8,80.9,-41.1,74.4C-54.4,68,-63.8,53.8,-70.1,39C-76.4,24.3,-79.6,8.9,-77.7,-6.8C-75.8,-22.4,-68.8,-38.2,-57.6,-47.2C-46.3,-56.2,-30.6,-58.4,-16.1,-65.2C-1.6,-72.1,11.7,-83.6,24.6,-85.5C37.5,-87.3,50.1,-79.4,46.5,-62.6Z" transform="translate(100 100)"/></svg>
+      <div class="container mx-auto px-4 grid md:grid-cols-2 items-center gap-10 py-16 md:py-24">
+        <div class="fade-up">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs bg-white border border-slate-200 shadow-soft">♻️ 循環材料・跨國供應</span>
+          <h1 class="mt-4 text-3xl md:text-5xl font-semibold leading-tight">
+            塑膠再生 × 國際供應鏈
+            <span class="block text-brand-700">讓資源回到循環，讓品質走向全球</span>
+          </h1>
+          <p class="mt-5 text-slate-600">專注塑膠再生料、進出口與輸送帶等工業品項。提供穩定供應、規格透明、快速交付。</p>
+          <div class="mt-8 flex gap-3">
+            <a href="#products" class="px-5 py-3 rounded-xl bg-brand-600 text-white font-medium shadow-soft hover:bg-brand-700 transition">查看產品</a>
+            <a href="#contact" class="px-5 py-3 rounded-xl border border-slate-300 font-medium hover:border-brand-600 hover:text-brand-700 transition">取得報價</a>
+          </div>
+          <dl class="mt-10 grid grid-cols-3 gap-6 text-center">
+            <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-soft">
+              <dt class="text-xs text-slate-500">每月供應</dt>
+              <dd class="text-xl md:text-2xl font-semibold">1–2 櫃</dd>
+            </div>
+            <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-soft">
+              <dt class="text-xs text-slate-500">服務地區</dt>
+              <dd class="text-xl md:text-2xl font-semibold">全球</dd>
+            </div>
+            <div class="p-4 bg-white rounded-xl border border-slate-200 shadow-soft">
+              <dt class="text-xs text-slate-500">品質控管</dt>
+              <dd class="text-xl md:text-2xl font-semibold">分選清洗</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="relative fade-up">
+          <div class="aspect-[4/3] rounded-[28px] glass border border-white/50 shadow-soft grid place-content-center text-center p-8">
+            <div class="text-slate-600">
+              <div class="text-6xl">📦</div>
+              <div class="mt-2 font-medium">Recycling • Trade • Conveyor</div>
+              <div class="text-sm">（此處可放置公司形象照或產品合成圖）</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-up">
+          <h2 class="text-2xl md:text-3xl font-semibold">關於杰拓</h2>
+          <p class="mt-4 text-slate-600">我們致力於將廢棄塑膠資源重新分選、處理並導入國際供應鏈。透過穩定物流與嚴格品質標準，提供客戶可追溯的再生料與可靠工業品。</p>
+          <ul class="mt-6 space-y-2 text-slate-700 list-disc pl-5">
+            <li>透明規格與檢驗資料</li>
+            <li>穩定出貨（每月 1–2 櫃起）</li>
+            <li>配合客製化分選與清洗流程</li>
+          </ul>
+        </div>
+        <div class="grid grid-cols-2 gap-4 fade-up">
+          <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl">
+            <div class="text-sm text-slate-500">使命</div>
+            <div class="font-semibold mt-1">讓再生成為高品質、可被信任的選擇</div>
+          </div>
+          <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl">
+            <div class="text-sm text-slate-500">願景</div>
+            <div class="font-semibold mt-1">串接回收、製造與國際貿易，打造循環供應鏈</div>
+          </div>
+          <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl">
+            <div class="text-sm text-slate-500">價值</div>
+            <div class="font-semibold mt-1">專業、誠信、速度</div>
+          </div>
+          <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl">
+            <div class="text-sm text-slate-500">服務</div>
+            <div class="font-semibold mt-1">回收分選、國際報關、物流門到門</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="py-20">
+      <div class="container mx-auto px-4">
+        <div class="flex items-end justify-between gap-4">
+          <div class="fade-up">
+            <h2 class="text-2xl md:text-3xl font-semibold">產品介紹</h2>
+            <p class="mt-2 text-slate-600">主要產品清單（可依需求調整規格、包裝與出貨港口）</p>
+          </div>
+          <a href="#contact" class="hidden md:inline-block px-4 py-2 rounded-xl bg-brand-600 text-white fade-up">詢價聯絡</a>
+        </div>
+
+        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- 1. 漁網（PE/PA/PET） -->
+          <article class="bg-white border border-slate-200 rounded-xl p-5 shadow-soft hover:shadow-lg transition fade-up">
+            <div class="text-xs text-brand-700 font-semibold">Recycled Nets</div>
+            <h3 class="mt-1 text-lg font-semibold">漁網再生料（PE / PA / PET）</h3>
+            <p class="mt-2 text-slate-600">材質分選良好，經挑揀與清潔處理，可依需求提供不同顆粒/碎片型態。</p>
+            <ul class="mt-3 text-sm text-slate-700 space-y-1 list-disc pl-5">
+              <li>材質：PE（聚乙烯）、PA（尼龍）、PET（聚酯）</li>
+              <li>狀態：分選好、處理乾淨</li>
+              <li>用途：射出 / 擠出再製、混配料</li>
+            </ul>
+          </article>
+
+          <!-- 2. 英國 HIPS 托盤粉碎 -->
+          <article class="bg-white border border-slate-200 rounded-xl p-5 shadow-soft hover:shadow-lg transition fade-up">
+            <div class="text-xs text-brand-700 font-semibold">HIPS Pallet Regrind</div>
+            <h3 class="mt-1 text-lg font-semibold">英國 HIPS 托盤粉碎</h3>
+            <p class="mt-2 text-slate-600">穩定長期供應，每月 1–2 櫃。粒徑均勻、污染低，適合造粒與下游成型。</p>
+            <ul class="mt-3 text-sm text-slate-700 space-y-1 list-disc pl-5">
+              <li>材質：HIPS（耐衝擊聚苯乙烯）</li>
+              <li>供應量：每月 1–2 櫃</li>
+              <li>包裝：大袋（1,000kg）或客製</li>
+            </ul>
+          </article>
+
+          <!-- 3. 中古輸送帶 -->
+          <article class="bg-white border border-slate-200 rounded-xl p-5 shadow-soft hover:shadow-lg transition fade-up">
+            <div class="text-xs text-brand-700 font-semibold">Used Conveyor Belt</div>
+            <h3 class="mt-1 text-lg font-semibold">中古輸送帶</h3>
+            <p class="mt-2 text-slate-600">多種等級與寬度，適合再利用或回收處理，另提供裁切服務。</p>
+            <ul class="mt-3 text-sm text-slate-700 space-y-1 list-disc pl-5">
+              <li>規格：橡膠/帆布/鋼絲繩等級</li>
+              <li>寬度：500–1600 mm（依批次）</li>
+              <li>服務：裁切、裝櫃與港口交付</li>
+            </ul>
+          </article>
+
+          <!-- 4. 美國芝加哥 POM（泰格納原料） -->
+          <article class="bg-white border border-slate-200 rounded-xl p-5 shadow-soft hover:shadow-lg transition fade-up">
+            <div class="text-xs text-brand-700 font-semibold">POM Resin</div>
+            <h3 class="mt-1 text-lg font-semibold">美國芝加哥 POM（泰格納原料）</h3>
+            <p class="mt-2 text-slate-600">工業原料來源，適用高剛性與尺寸穩定之工程應用，可提供基本資料與批次照片。</p>
+            <ul class="mt-3 text-sm text-slate-700 space-y-1 list-disc pl-5">
+              <li>材質：POM（聚甲醛）</li>
+              <li>來源：美國芝加哥地區，泰格納（使用者提供品牌資訊）</li>
+              <li>交期：依批次與港口彈性安排</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="mt-8 p-5 bg-brand-50 border border-brand-200 rounded-xl fade-up">
+          <div class="text-sm text-brand-900">如需規格表（MI、灰分、含水率、顆粒照片等），請於詢價時註明。我們可提供抽驗與第三方檢測協助。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl md:text-3xl font-semibold fade-up">服務項目</h2>
+        <div class="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-5 bg-white border border-slate-200 rounded-xl shadow-soft fade-up">
+            <div class="text-sm text-brand-700 font-semibold">回收與分選</div>
+            <p class="mt-2 text-slate-600">來源分類、材質辨識、清洗與雜質剔除，確保穩定品質。</p>
+          </div>
+          <div class="p-5 bg-white border border-slate-200 rounded-xl shadow-soft fade-up">
+            <div class="text-sm text-brand-700 font-semibold">國際進出口</div>
+            <p class="mt-2 text-slate-600">文件製作、報關與法規符合（依目的地要求備齊材料）。</p>
+          </div>
+          <div class="p-5 bg-white border border-slate-200 rounded-xl shadow-soft fade-up">
+            <div class="text-sm text-brand-700 font-semibold">物流與倉儲</div>
+            <p class="mt-2 text-slate-600">場內裝櫃、港口交付與門到門服務，彈性配合交期。</p>
+          </div>
+          <div class="p-5 bg-white border border-slate-200 rounded-xl shadow-soft fade-up">
+            <div class="text-sm text-brand-700 font-semibold">品質文件</div>
+            <p class="mt-2 text-slate-600">提供批次照片、基本規格、必要時協助第三方檢驗。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News / Projects -->
+    <section id="news" class="py-20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl md:text-3xl font-semibold fade-up">新聞與案例</h2>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <article class="bg-white border border-slate-200 p-5 rounded-xl fade-up">
+            <div class="text-xs text-slate-500">2025-10-01</div>
+            <h3 class="mt-1 font-semibold">漁網再生料供應升級</h3>
+            <p class="mt-2 text-slate-600">新增 PET 漁網來源與清洗流程，提升穩定性與顆粒潔淨度。</p>
+          </article>
+          <article class="bg-white border border-slate-200 p-5 rounded-xl fade-up">
+            <div class="text-xs text-slate-500">2025-08-15</div>
+            <h3 class="mt-1 font-semibold">英國 HIPS 托盤粉碎長約</h3>
+            <p class="mt-2 text-slate-600">與供應端簽訂 12 個月長約，確保每月 1–2 櫃供應量。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
     <section id="contact" class="py-20 bg-white">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-2xl font-semibold mb-4">聯絡我們</h2>
-        <p class="text-slate-600 mb-6">Email：<a href="mailto:sales@jeto-example.com" class="text-blue-600">sales@jeto-example.com</a></p>
-        <p class="text-slate-600">電話：+886-2-0000-0000</p>
+      <div class="container mx-auto px-4">
+        <div class="grid lg:grid-cols-2 gap-10">
+          <div class="fade-up">
+            <h2 class="text-2xl md:text-3xl font-semibold">聯絡我們</h2>
+            <p class="mt-2 text-slate-600">歡迎來信或來訊詢價，請提供需求材質、規格、數量與交期。</p>
+
+            <div class="mt-6 space-y-3">
+              <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <div class="text-sm text-slate-500">Email</div>
+                <a class="font-medium text-brand-700" href="mailto:jessielin6688@gmail.com">jessielin6688@gmail.com</a>
+              </div>
+              <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <div class="text-sm text-slate-500">電話</div>
+                <div class="font-medium">08-8339611</div>
+              </div>
+              <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+                <div class="text-sm text-slate-500">地址</div>
+                <div class="font-medium">屏東縣東港鎮沿海五路249巷23號</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-soft fade-up">
+            <form id="contactForm" class="space-y-4" onsubmit="sendEmail(event)">
+              <div>
+                <label class="text-sm text-slate-600">您的名字</label>
+                <input required type="text" name="name" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600" />
+              </div>
+              <div>
+                <label class="text-sm text-slate-600">Email</label>
+                <input required type="email" name="email" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600" />
+              </div>
+              <div>
+                <label class="text-sm text-slate-600">需求內容</label>
+                <textarea required name="message" rows="5" class="mt-1 w-full rounded-xl border-slate-300 focus:border-brand-600 focus:ring-brand-600" placeholder="例如：HIPS 托盤粉碎 1 櫃，目的港口，交期..."></textarea>
+              </div>
+              <button class="w-full py-3 rounded-xl bg-brand-600 text-white font-medium hover:bg-brand-700 transition">送出</button>
+              <p class="text-xs text-slate-500">本表單會開啟您的 Email（mailto）以寄送，若未自動開啟，請直接來信至 <span class="underline">jessielin6688@gmail.com</span>。</p>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-  <footer class="py-10 text-center text-sm text-slate-500 border-t border-slate-200">© 2025 杰拓有限公司</footer>
+
+  <footer class="py-10 text-center text-sm text-slate-500">
+    <div>© <span id="y"></span> 杰拓有限公司 JETO Co., Ltd. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const m = document.getElementById('mnav');
+    const btn = document.getElementById('menuBtn');
+    function toggleMenu(){ m.classList.toggle('hidden'); }
+    if (btn) btn.addEventListener('click', toggleMenu);
+
+    // Build mailto body (pure function) — easier to test
+    function buildMailtoBody(name, email, message){
+      const n = name ? String(name).trim() : '';
+      const e = email ? String(email).trim() : '';
+      const msg = message ? String(message).trim() : '';
+      const plain = `姓名: ${n}\nEmail: ${e}\n\n${msg}`;
+      return encodeURIComponent(plain);
+    }
+
+    // Mailto form
+    function sendEmail(e){
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const name = fd.get('name');
+      const email = fd.get('email');
+      const message = fd.get('message');
+      const to = 'jessielin6688@gmail.com'; // TODO: 換成你的信箱
+      const subject = encodeURIComponent('網站詢問｜' + (name || '')); 
+      const body = buildMailtoBody(name, email, message);
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    }
+
+    // Simple in-view animation
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{ if(ent.isIntersecting) ent.target.classList.add('show'); })
+    }, {threshold: .18});
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+    // Mock bilingual toggle (static)
+    const toggleLang = ()=>{
+      alert('多語系切換示意：需要英文文案後可切換 EN 版。');
+    }
+    const langBtn = document.getElementById('langBtn');
+    const langBtnM = document.getElementById('langBtnM');
+    if (langBtn) langBtn.addEventListener('click', toggleLang);
+    if (langBtnM) langBtnM.addEventListener('click', toggleLang);
+
+    // ---------------------
+    // Developer Tests (console + on-page)
+    // ---------------------
+    (function runTests(){
+      const cases = [
+        {name:'A', email:'a@example.com', msg:'Hello', expect:'姓名: A\nEmail: a@example.com\n\nHello'},
+        {name:'小明', email:'x@測試.tw', msg:'需求：HIPS 1 柜\n交期：11/30', expect:'姓名: 小明\nEmail: x@測試.tw\n\n需求：HIPS 1 柜\n交期：11/30'},
+        {name:'', email:'', msg:'', expect:'姓名: \nEmail: \n\n'}
+      ];
+      let passed = 0;
+      cases.forEach((c, i)=>{
+        const decoded = decodeURIComponent(buildMailtoBody(c.name, c.email, c.msg));
+        const ok = decoded === c.expect;
+        if(ok) passed++; else console.error('Test failed', {i, decoded, expect:c.expect});
+        console.assert(ok, `Case #${i+1} should match`);
+      });
+      const el = document.createElement('details');
+      el.className = 'max-w-2xl mx-auto my-6 text-xs text-slate-600';
+      el.innerHTML = `<summary class="cursor-pointer">Developer Test Results</summary><div class="mt-2 p-3 bg-slate-50 border border-slate-200 rounded-xl">Passed ${passed}/${cases.length} tests（詳見 Console）</div>`;
+      document.body.appendChild(el);
+    })();
+  </script>
 </body>
 </html>
